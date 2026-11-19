@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.google.gms.google.services)
+    id("kotlin-kapt") // Room database
 }
 
 android {
@@ -79,7 +80,17 @@ dependencies {
     // Firebase authentication
     implementation(libs.firebase.auth)
 
-    // ViewModel and lifecycle support
+    // Connects ViewModels with Compose screens
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
 
+    // Collects data based on screen lifecycle
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.6")
+
+    // Room Database
+    implementation("androidx.room:room-runtime:2.7.2")
+    implementation("androidx.room:room-ktx:2.7.2")
+    kapt("androidx.room:room-compiler:2.7.2")
+
+    // Kotlin coroutines integration with Firebase Tasks
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
 }
